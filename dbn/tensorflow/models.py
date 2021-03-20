@@ -2,8 +2,7 @@ import atexit
 from abc import ABCMeta
 
 import numpy as np
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+import tensorflow as tf
 from sklearn.base import ClassifierMixin, RegressorMixin
 
 from ..models import AbstractSupervisedDBN as BaseAbstractSupervisedDBN
@@ -12,13 +11,6 @@ from ..models import BinaryRBM as BaseBinaryRBM
 from ..models import UnsupervisedDBN as BaseUnsupervisedDBN
 from ..utils import batch_generator, to_categorical
 
-
-def close_session():
-    sess.close()
-
-
-sess = tf.Session()
-atexit.register(close_session)
 
 
 def weight_variable(func, shape, stddev, dtype=tf.float32):
